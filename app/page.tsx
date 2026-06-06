@@ -24,9 +24,9 @@ const STACK = [
 ];
 
 const PRICES = [
-  { name:"Лендинг",    price:"250–500 €",  desc:"Одностраничный промо-сайт",   items:["Адаптивный дизайн","Форма обратной связи","Оптимизация скорости","Деплой на Vercel"],  c:"#a855f7" },
-  { name:"Сайт",       price:"600–1200 €", desc:"Многостраничный бизнес-сайт", items:["До 6 страниц","База данных Supabase","Несколько языков","Деплой + домен"],             c:"#06b6d4", hot:true },
-  { name:"Приложение", price:"от 2000 €",  desc:"Полноценное веб-приложение",  items:["Авторизация","Личный кабинет","API интеграции","Поддержка 1 месяц"],                    c:"#f43f5e" },
+  { name:"Лендинг",    price:"250–500 €",  desc:"Один экран или несколько блоков — визитка, промо, презентация услуг",   items:["Мобильная версия","Форма заявки","Быстрая загрузка","Размещение в интернете"],  c:"#a855f7" },
+  { name:"Сайт",       price:"600–1200 €", desc:"Несколько страниц, своя база данных, всё что нужно реальному бизнесу",  items:["До 6 страниц","База данных","Поддержка 2 языков","Домен + хостинг"],             c:"#06b6d4", hot:true },
+  { name:"Платформа",  price:"от 2000 €",  desc:"Кабинеты, роли, платежи — когда нужно что-то серьёзное",               items:["Личные кабинеты","Приём оплат","Интеграции с сервисами","Месяц поддержки"],      c:"#f43f5e" },
 ];
 
 /* ─── Particle intro ────────────────────────────────────────── */
@@ -497,11 +497,7 @@ export default function Portfolio() {
 
           {/* Left */}
           <div className="slide-up">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold mb-8 text-emerald-400"
-              style={{ background: "rgba(52,211,153,0.08)", border: "1px solid rgba(52,211,153,0.2)" }}>
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse inline-block" />
-              Открыт для новых проектов
-            </div>
+            <p className="text-slate-500 text-xs uppercase tracking-[3px] mb-8">Кишинёв, Молдова 🇲🇩</p>
 
             <h1 className="font-black leading-[0.9] tracking-tight mb-6" style={{ fontSize: "clamp(52px,9vw,96px)" }}>
               Grigorii<br />
@@ -516,8 +512,8 @@ export default function Portfolio() {
             </div>
 
             <p className="text-slate-500 text-base leading-relaxed mb-10 max-w-md">
-              Создаю современные сайты и приложения на Next.js.<br />
-              Быстро, красиво, под ключ. Из Молдовы 🇲🇩
+              Делаю сайты и веб-приложения уже 5 лет.<br />
+              Параллельно занимаюсь таргетом — FB, IG, TikTok.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -571,8 +567,7 @@ export default function Portfolio() {
           <Reveal>
             <p className="text-xs font-bold uppercase tracking-[4px] mb-4 g-text">— О себе</p>
             <h2 className="text-4xl md:text-5xl font-black mb-12">
-              5 лет в разработке —<br />
-              <span className="g-text">результаты говорят сами</span>
+              Коротко о себе
             </h2>
           </Reveal>
 
@@ -594,15 +589,15 @@ export default function Portfolio() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { icon: "🚀", title: "Быстрая разработка", desc: "Запускаю проекты за 1–4 недели, без затяжных обсуждений." },
-              { icon: "💎", title: "Современный стек",   desc: "Next.js, Supabase, Tailwind — то, что используют топовые компании." },
-              { icon: "🎯", title: "Таргет · 3 года",    desc: "Facebook, Instagram, TikTok Ads. Настраиваю рекламу которая приводит клиентов." },
-              { icon: "🤝", title: "Под ключ",           desc: "Сделаю сайт и сразу настрою рекламу — полный цикл от идеи до клиентов." },
+              { num: "01", title: "Веб-разработка",  desc: "5 лет на Next.js, React, Supabase. Делал сайты для бизнеса из Молдовы, Румынии и Германии." },
+              { num: "02", title: "Таргет",           desc: "3 года настраиваю рекламу в Facebook, Instagram и TikTok. Работал с разными нишами." },
+              { num: "03", title: "Скорость",         desc: "Сдаю проекты в срок. Обычно от 1 до 4 недель в зависимости от объёма." },
+              { num: "04", title: "Связка сайт+трафик", desc: "Могу и разработать, и сразу настроить рекламу — не нужно искать двух разных людей." },
             ].map((c, i) => (
-              <Reveal key={c.title} delay={i * 0.12}>
+              <Reveal key={c.num} delay={i * 0.12}>
                 <TiltCard className="p-7 h-full">
-                  <div className="text-4xl mb-4">{c.icon}</div>
-                  <div className="font-black text-lg mb-2">{c.title}</div>
+                  <div className="text-3xl font-black mb-4 g-text opacity-40">{c.num}</div>
+                  <div className="font-black text-base mb-2">{c.title}</div>
                   <p className="text-slate-400 text-sm leading-relaxed">{c.desc}</p>
                 </TiltCard>
               </Reveal>
@@ -616,7 +611,7 @@ export default function Portfolio() {
               </div>
               <div>
                 <p className="text-slate-300 leading-relaxed mb-4">
-                  Я из Кишинёва. Занимаюсь веб-разработкой уже 5 лет — от лендингов до полноценных SaaS-платформ. Параллельно 3 года работаю таргетологом: настраиваю рекламу в Facebook, Instagram и TikTok. Помогаю бизнесу не просто сделать сайт, но и привести на него клиентов.
+                  Мне 20 лет, живу в Кишинёве. Начал с простых лендингов, сейчас делаю полноценные платформы с базами данных и авторизацией. Параллельно веду рекламу для клиентов — в основном FB и Instagram. Работаю сам, без команды — поэтому всегда на прямой связи.
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <MagBtn href="tel:+37369721294"
@@ -702,7 +697,7 @@ export default function Portfolio() {
           <Reveal>
             <p className="text-xs font-bold uppercase tracking-[4px] mb-4 g-text">— Цены</p>
             <h2 className="text-4xl md:text-5xl font-black mb-3">Стоимость</h2>
-            <p className="text-slate-500 mb-16">Точная цена обсуждается индивидуально</p>
+            <p className="text-slate-500 mb-16">Это ориентир — по факту всё обсуждаем, исходя из задачи</p>
           </Reveal>
           <div className="grid md:grid-cols-3 gap-6">
             {PRICES.map(({ name, price, desc, items, c, hot }, i) => (
@@ -742,8 +737,8 @@ export default function Portfolio() {
         <div className="max-w-5xl mx-auto">
           <Reveal>
             <p className="text-xs font-bold uppercase tracking-[4px] mb-4 g-text">— Контакт</p>
-            <h2 className="text-4xl md:text-5xl font-black mb-4">Есть проект?</h2>
-            <p className="text-slate-400 mb-14 text-lg">Напиши — отвечу в течение нескольких часов.</p>
+            <h2 className="text-4xl md:text-5xl font-black mb-4">Напиши мне</h2>
+            <p className="text-slate-400 mb-14 text-lg">Расскажи что нужно — отвечу быстро, без воды.</p>
           </Reveal>
           <div className="grid md:grid-cols-2 gap-8 items-start">
             {/* Left — contacts */}
