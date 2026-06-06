@@ -122,6 +122,18 @@ body {
 .glitch-1 { animation: glitch1 0.5s steps(1) forwards; }
 .glitch-2 { animation: glitch2 0.5s steps(1) forwards; }
 
+/* 3D Reviews wheel */
+@keyframes carousel-spin {
+  from { transform: rotateY(0deg); }
+  to   { transform: rotateY(-360deg); }
+}
+.carousel-3d {
+  animation: carousel-spin 16s linear infinite;
+}
+.carousel-3d:hover {
+  animation-play-state: paused;
+}
+
 /* Custom cursor — hide default on mouse devices */
 @media (pointer: fine) {
   *, *::before, *::after { cursor: none !important; }
