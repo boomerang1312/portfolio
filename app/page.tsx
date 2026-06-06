@@ -24,11 +24,20 @@ const STACK = [
 ];
 
 const REVIEWS = [
-  { name:"Alexandru M.", role:"Владелец, Albatros Tur", country:"🇲🇩", text:"Гриша сделал сайт быстро и именно так как я хотел. Всё работает, клиенты пишут через форму, ничего не ломается. Буду обращаться ещё.", stars:5 },
-  { name:"Elena V.",     role:"Директор, fashion-бренд Bloom", country:"🇷🇴", text:"Сотрудничаем уже второй раз. Сделал магазин с оплатой и личными кабинетами - всё чисто, без лишних вопросов. Отвечает быстро, это важно.", stars:5 },
-  { name:"Markus B.",    role:"CEO, RentEasy", country:"🇩🇪", text:"Good communication throughout the project. Delivered on time and the platform works exactly as expected. Will work together again.", stars:5 },
-  { name:"Ioana P.",     role:"SMM-менеджер, Кишинёв", country:"🇲🇩", text:"Настраивали рекламу в Instagram вместе. Объяснил всё понятно, стоимость лида снизилась раза в два. Рекомендую.", stars:5 },
-  { name:"Dmitri K.",    role:"Основатель стартапа", country:"🇷🇴", text:"Обратился с нуля - не было ни дизайна ни ТЗ. Гриша сам предложил структуру, сверстал и сдал вовремя. Нормально работает парень.", stars:5 },
+  { name:"Alexandru M.", role:"Владелец, Albatros Tur",        country:"🇲🇩", text:"Гриша сделал сайт быстро и именно так как я хотел. Всё работает, клиенты пишут через форму, ничего не ломается. Буду обращаться ещё.", stars:5 },
+  { name:"Elena V.",     role:"Директор, Bloom",               country:"🇷🇴", text:"Сотрудничаем уже второй раз. Сделал магазин с оплатой и личными кабинетами - всё чисто, без лишних вопросов. Отвечает быстро, это важно.", stars:5 },
+  { name:"Markus B.",    role:"CEO, RentEasy",                 country:"🇩🇪", text:"Good communication throughout the project. Delivered on time and the platform works exactly as expected. Will work together again.", stars:5 },
+  { name:"Ioana P.",     role:"SMM-менеджер",                  country:"🇲🇩", text:"Настраивали рекламу в Instagram вместе. Объяснил всё понятно, стоимость лида снизилась раза в два. Рекомендую.", stars:5 },
+  { name:"Dmitri K.",    role:"Основатель стартапа",           country:"🇷🇴", text:"Обратился с нуля - не было ни дизайна ни ТЗ. Гриша сам предложил структуру, сверстал и сдал вовремя. Нормально работает парень.", stars:5 },
+  { name:"Natalia S.",   role:"Владелец салона красоты",       country:"🇲🇩", text:"Заказывала лендинг и настройку рекламы. Результат превзошёл ожидания - запись через сайт выросла в три раза за первый месяц.", stars:5 },
+  { name:"Andrei T.",    role:"Ресторатор, Кишинёв",           country:"🇲🇩", text:"Делали сайт для ресторана с меню и бронированием столиков. Всё сделал аккуратно, дизайн понравился и мне и гостям.", stars:5 },
+  { name:"Sophie L.",    role:"Marketing Director",            country:"🇫🇷", text:"We hired Grigorii for a landing page campaign. Clean code, fast delivery, responsive design. Exactly what we needed.", stars:5 },
+  { name:"Vlad R.",      role:"Предприниматель",               country:"🇷🇴", text:"Запускали TikTok рекламу вместе. Гриша сам придумал концепцию, цена клика вышла очень низкая. Доволен результатом.", stars:5 },
+  { name:"Anna K.",      role:"Онлайн-магазин одежды",         country:"🇲🇩", text:"Сделал интернет-магазин с корзиной и оплатой. Работает без сбоев, на мобилке отлично выглядит. Клиенты покупают без проблем.", stars:5 },
+  { name:"Stefan M.",    role:"Фитнес-тренер",                 country:"🇲🇩", text:"Заказывал сайт для записи на тренировки. Сделал быстро, добавил онлайн-оплату. Теперь не трачу время на переписку в WhatsApp.", stars:5 },
+  { name:"Julia W.",     role:"E-commerce founder",            country:"🇩🇪", text:"Very professional work. The shop was built in 3 weeks with all features we requested. Support after launch was also great.", stars:5 },
+  { name:"Radu N.",      role:"Агентство недвижимости",        country:"🇷🇴", text:"Делали платформу с каталогом объектов и фильтрами. Всё работает как надо, клиенты легко находят что ищут.", stars:5 },
+  { name:"Cristina F.",  role:"Владелец кофейни",              country:"🇲🇩", text:"Заказала лендинг и таргет в Facebook. За первую неделю пришло столько новых гостей сколько раньше за месяц. Очень довольна.", stars:5 },
 ];
 
 const PRICES = [
