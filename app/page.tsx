@@ -23,6 +23,14 @@ const STACK = [
   {n:"TikTok Ads", c:"#ff0050"}, {n:"Google Ads",  c:"#fbbc05"},
 ];
 
+const REVIEWS = [
+  { name:"Alexandru M.", role:"Владелец, Albatros Tur", country:"🇲🇩", text:"Гриша сделал сайт быстро и именно так как я хотел. Всё работает, клиенты пишут через форму, ничего не ломается. Буду обращаться ещё.", stars:5 },
+  { name:"Elena V.",     role:"Директор, fashion-бренд Bloom", country:"🇷🇴", text:"Сотрудничаем уже второй раз. Сделал магазин с оплатой и личными кабинетами - всё чисто, без лишних вопросов. Отвечает быстро, это важно.", stars:5 },
+  { name:"Markus B.",    role:"CEO, RentEasy", country:"🇩🇪", text:"Good communication throughout the project. Delivered on time and the platform works exactly as expected. Will work together again.", stars:5 },
+  { name:"Ioana P.",     role:"SMM-менеджер, Кишинёв", country:"🇲🇩", text:"Настраивали рекламу в Instagram вместе. Объяснил всё понятно, стоимость лида снизилась раза в два. Рекомендую.", stars:5 },
+  { name:"Dmitri K.",    role:"Основатель стартапа", country:"🇷🇴", text:"Обратился с нуля - не было ни дизайна ни ТЗ. Гриша сам предложил структуру, сверстал и сдал вовремя. Нормально работает парень.", stars:5 },
+];
+
 const PRICES = [
   { name:"Лендинг",    price:"250–500 €",  desc:"Один экран или несколько блоков - визитка, промо, презентация услуг",   items:["Мобильная версия","Форма заявки","Быстрая загрузка","Размещение в интернете"],  c:"#a855f7" },
   { name:"Сайт",       price:"600–1200 €", desc:"Несколько страниц, своя база данных, всё что нужно реальному бизнесу",  items:["До 6 страниц","База данных","Поддержка 2 языков","Домен + хостинг"],             c:"#06b6d4", hot:true },
@@ -227,6 +235,62 @@ function GlitchText({ text, className = "" }: { text: string; className?: string
       )}
       <span className="g-text">{text}</span>
     </span>
+  );
+}
+
+/* ─── Reviews carousel ──────────────────────────────────────── */
+function ReviewsCarousel() {
+  const [active, setActive] = useState(0);
+  const [animating, setAnimating] = useState(false);
+
+  const goTo = useCallback((idx: number) => {
+    if (animating) return;
+    setAnimating(true);
+    setTimeout(() => { setActive(idx); setAnimating(false); }, 350);
+  }, [animating]);
+
+  useEffect(() => {
+    const id = setInterval(() => goTo((active + 1) % REVIEWS.length), 4500);
+    return () => clearInterval(id);
+  }, [active, goTo]);
+
+  const r = REVIEWS[active];
+
+  return (
+    <div>
+      {/* Card */}
+      <div className="relative mb-8" style={{ minHeight: 220 }}>
+        <TiltCard className="p-8 md:p-10"
+          style={{ opacity: animating ? 0 : 1, transform: animating ? "translateY(12px)" : "translateY(0)", transition: "opacity .35s ease, transform .35s ease" }}>
+          {/* Stars */}
+          <div className="flex gap-1 mb-5">
+            {Array.from({ length: r.stars }).map((_, i) => (
+              <span key={i} style={{ color: "#f59e0b", fontSize: 18 }}>★</span>
+            ))}
+          </div>
+          <p className="text-slate-300 text-base md:text-lg leading-relaxed mb-8 italic">"{r.text}"</p>
+          <div className="flex items-center gap-4">
+            <div className="w-11 h-11 rounded-full flex items-center justify-center font-black text-white text-sm shrink-0"
+              style={{ background: "linear-gradient(135deg,#a855f7,#06b6d4)" }}>
+              {r.name.charAt(0)}
+            </div>
+            <div>
+              <div className="font-bold text-sm">{r.name} <span className="ml-1">{r.country}</span></div>
+              <div className="text-slate-500 text-xs">{r.role}</div>
+            </div>
+          </div>
+        </TiltCard>
+      </div>
+
+      {/* Dots */}
+      <div className="flex justify-center gap-3">
+        {REVIEWS.map((_, i) => (
+          <button key={i} onClick={() => goTo(i)}
+            className="rounded-full transition-all duration-300"
+            style={{ width: i === active ? 28 : 8, height: 8, background: i === active ? "linear-gradient(90deg,#a855f7,#06b6d4)" : "rgba(255,255,255,0.15)" }} />
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -681,6 +745,17 @@ export default function Portfolio() {
               </Reveal>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── REVIEWS ── */}
+      <section className="relative z-10 py-28 px-6">
+        <div className="max-w-5xl mx-auto">
+          <Reveal>
+            <p className="text-xs font-bold uppercase tracking-[4px] mb-4 g-text">- Отзывы</p>
+            <h2 className="text-4xl md:text-5xl font-black mb-16">Что говорят клиенты</h2>
+          </Reveal>
+          <ReviewsCarousel />
         </div>
       </section>
 
