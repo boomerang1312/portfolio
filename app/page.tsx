@@ -4,7 +4,7 @@ import Image from "next/image";
 
 /* ─── Data ─────────────────────────────────────────────────── */
 const NAV = [["О себе","about"],["Проекты","projects"],["Стек","stack"],["Цены","prices"],["Контакт","contact"]];
-const ROLES = ["Web Developer","Next.js Engineer","Full-Stack Developer","5 лет опыта"];
+const ROLES = ["Web Developer","Next.js Engineer","Full-Stack Developer","Таргетолог · 3 года"];
 
 const PROJECTS = [
   { name:"Albatros Tur",   tag:"Туристический сайт",  desc:"Туристическое агентство из Молдовы. Каталог туров и пляжей, мультиязычность RO/RU, форма бронирования, Supabase база данных.", url:"https://albatrostur-site.vercel.app", stack:["Next.js 15","Supabase","Tailwind","i18n"],    emoji:"✈️", live:true },
@@ -15,10 +15,12 @@ const PROJECTS = [
 ];
 
 const STACK = [
-  {n:"Next.js",    c:"#ffffff"}, {n:"React",      c:"#61dafb"},
-  {n:"TypeScript", c:"#3178c6"}, {n:"Tailwind",   c:"#06b6d4"},
+  {n:"Next.js",    c:"#ffffff"}, {n:"React",       c:"#61dafb"},
+  {n:"TypeScript", c:"#3178c6"}, {n:"Tailwind",    c:"#06b6d4"},
   {n:"Supabase",   c:"#3ecf8e"}, {n:"PostgreSQL",  c:"#336791"},
   {n:"Vercel",     c:"#ffffff"}, {n:"Git",         c:"#f34f29"},
+  {n:"Facebook Ads",c:"#1877f2"},{n:"Instagram Ads",c:"#e1306c"},
+  {n:"TikTok Ads", c:"#ff0050"}, {n:"Google Ads",  c:"#fbbc05"},
 ];
 
 const PRICES = [
@@ -590,11 +592,12 @@ export default function Portfolio() {
             ))}
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
               { icon: "🚀", title: "Быстрая разработка", desc: "Запускаю проекты за 1–4 недели, без затяжных обсуждений." },
               { icon: "💎", title: "Современный стек",   desc: "Next.js, Supabase, Tailwind — то, что используют топовые компании." },
-              { icon: "🤝", title: "Открытое общение",   desc: "Всегда на связи, показываю прогресс, довожу до конца." },
+              { icon: "🎯", title: "Таргет · 3 года",    desc: "Facebook, Instagram, TikTok Ads. Настраиваю рекламу которая приводит клиентов." },
+              { icon: "🤝", title: "Под ключ",           desc: "Сделаю сайт и сразу настрою рекламу — полный цикл от идеи до клиентов." },
             ].map((c, i) => (
               <Reveal key={c.title} delay={i * 0.12}>
                 <TiltCard className="p-7 h-full">
@@ -613,7 +616,7 @@ export default function Portfolio() {
               </div>
               <div>
                 <p className="text-slate-300 leading-relaxed mb-4">
-                  Я из Кишинёва. Занимаюсь веб-разработкой уже 5 лет — от небольших лендингов до полноценных SaaS-платформ. Работал с клиентами из Молдовы, Румынии и Германии. Специализируюсь на Next.js и современном fullstack-стеке.
+                  Я из Кишинёва. Занимаюсь веб-разработкой уже 5 лет — от лендингов до полноценных SaaS-платформ. Параллельно 3 года работаю таргетологом: настраиваю рекламу в Facebook, Instagram и TikTok. Помогаю бизнесу не просто сделать сайт, но и привести на него клиентов.
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <MagBtn href="tel:+37369721294"
