@@ -464,7 +464,11 @@ export default function Portfolio() {
         borderBottom: scrolled ? "1px solid rgba(168,85,247,0.15)" : "none",
       }}>
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-          <span className="font-black text-xl g-text tracking-tight">GS.</span>
+          <button
+            onClick={() => { window.scrollTo({ top: 0, behavior: "smooth" }); sessionStorage.removeItem("intro_seen"); setShowIntro(true); }}
+            className="font-black text-xl g-text tracking-tight hover:opacity-80 transition-opacity">
+            GS.
+          </button>
           <nav className="hidden md:flex gap-8">
             {NAV.map(([l, id]) => (
               <a key={id} href={`#${id}`} className="text-sm text-slate-400 hover:text-white transition-colors">{l}</a>
