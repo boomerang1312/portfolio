@@ -27,33 +27,109 @@ const PRICES = [
   { name:"Приложение", price:"от 2000 €",  desc:"Полноценное веб-приложение",  items:["Авторизация","Личный кабинет","API интеграции","Поддержка 1 месяц"],                    c:"#f43f5e" },
 ];
 
-/* ─── Intro splash ──────────────────────────────────────────── */
+/* ─── Particle intro ────────────────────────────────────────── */
 function Intro({ onDone }: { onDone: () => void }) {
-  const [phase, setPhase] = useState(0);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
   useEffect(() => {
-    const t1 = setTimeout(() => setPhase(1), 1400);
-    const t2 = setTimeout(() => { setPhase(2); onDone(); }, 2200);
-    return () => { clearTimeout(t1); clearTimeout(t2); };
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const W = window.innerWidth;
+    const H = window.innerHeight;
+    canvas.width = W;
+    canvas.height = H;
+
+    // Render text offscreen to sample pixel positions
+    const off = document.createElement("canvas");
+    off.width = W; off.height = H;
+    const oc = off.getContext("2d")!;
+    const fs = Math.min(W * 0.28, 220);
+    oc.font = `900 ${fs}px system-ui, sans-serif`;
+    oc.textAlign = "center";
+    oc.textBaseline = "middle";
+    oc.fillStyle = "#fff";
+    oc.fillText("GS.", W / 2, H / 2);
+
+    const idata = oc.getImageData(0, 0, W, H).data;
+    const gap = W < 600 ? 5 : 4;
+
+    type P = { x: number; y: number; ox: number; oy: number; sx: number; sy: number; vx: number; vy: number; size: number; color: string; };
+    const pts: P[] = [];
+
+    for (let py = 0; py < H; py += gap) {
+      for (let px = 0; px < W; px += gap) {
+        if (idata[(py * W + px) * 4 + 3] > 100) {
+          const t  = px / W;
+          const r  = Math.round(168 * (1 - t) + 6  * t);
+          const g  = Math.round(85  * (1 - t) + 182 * t);
+          const b  = Math.round(247 * (1 - t) + 212 * t);
+          const sx = Math.random() * W;
+          const sy = Math.random() * H;
+          const ang = Math.atan2(py - H / 2, px - W / 2) + (Math.random() - 0.5) * 0.9;
+          const spd = Math.random() * 10 + 4;
+          pts.push({ x: sx, y: sy, ox: px, oy: py, sx, sy, vx: Math.cos(ang) * spd, vy: Math.sin(ang) * spd, size: Math.random() * 1.5 + 0.8, color: `rgb(${r},${g},${b})` });
+        }
+      }
+    }
+
+    const F1 = 55;   // form done
+    const F2 = 100;  // hold done
+    const F3 = 165;  // explode done
+    let frame = 0;
+    let raf: number;
+    let finished = false;
+    const eOut = (t: number) => 1 - Math.pow(1 - t, 3);
+    const eIn  = (t: number) => t * t;
+
+    const tick = () => {
+      frame++;
+      ctx.fillStyle = "#07070f";
+      ctx.fillRect(0, 0, W, H);
+
+      if (frame <= F1) {
+        const e = eOut(frame / F1);
+        ctx.globalAlpha = e;
+        pts.forEach(p => {
+          p.x = p.sx + (p.ox - p.sx) * e;
+          p.y = p.sy + (p.oy - p.sy) * e;
+          ctx.fillStyle = p.color;
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
+        });
+        ctx.globalAlpha = 1;
+      } else if (frame <= F2) {
+        pts.forEach(p => {
+          const pulse = 0.7 + 0.3 * Math.sin(frame * 0.3 + p.ox * 0.006);
+          ctx.globalAlpha = pulse;
+          ctx.fillStyle = p.color;
+          ctx.beginPath(); ctx.arc(p.ox, p.oy, p.size, 0, Math.PI * 2); ctx.fill();
+        });
+        ctx.globalAlpha = 1;
+      } else if (frame <= F3) {
+        const dt = frame - F2;
+        const e  = eIn(dt / (F3 - F2));
+        pts.forEach(p => {
+          ctx.globalAlpha = Math.max(0, 1 - e * 1.3);
+          ctx.fillStyle = p.color;
+          ctx.beginPath(); ctx.arc(p.ox + p.vx * dt * 0.65, p.oy + p.vy * dt * 0.65, p.size * (1 + e * 1.5), 0, Math.PI * 2); ctx.fill();
+        });
+        ctx.globalAlpha = 1;
+      } else if (!finished) {
+        finished = true;
+        onDone();
+        return;
+      }
+
+      raf = requestAnimationFrame(tick);
+    };
+
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
   }, [onDone]);
-  if (phase === 2) return null;
-  return (
-    <div className="fixed inset-0 z-[9999] flex items-center justify-center" style={{
-      background: "#07070f",
-      opacity: phase === 1 ? 0 : 1,
-      pointerEvents: phase >= 1 ? "none" : "all",
-      transition: "opacity 0.7s ease",
-    }}>
-      <div style={{
-        fontSize: "clamp(72px,18vw,180px)", fontWeight: 900,
-        background: "linear-gradient(135deg,#e879f9,#a855f7,#06b6d4)",
-        WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text",
-        transform: phase === 1 ? "scale(6)" : "scale(1)",
-        opacity: phase === 1 ? 0 : 1,
-        transition: "transform 0.75s cubic-bezier(.4,0,.2,1), opacity 0.5s",
-        letterSpacing: "-2px",
-      }}>GS.</div>
-    </div>
-  );
+
+  return <canvas ref={canvasRef} className="fixed inset-0 z-[9999] block" style={{ background: "#07070f" }} />;
 }
 
 /* ─── Scroll progress bar ───────────────────────────────────── */
