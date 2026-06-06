@@ -251,6 +251,69 @@ function Marquee() {
   );
 }
 
+/* ─── Contact form ──────────────────────────────────────────── */
+function ContactForm() {
+  const [form, setForm]   = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<"idle"|"sending"|"ok"|"err">("idle");
+
+  const send = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("sending");
+    try {
+      const r = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      setStatus(r.ok ? "ok" : "err");
+    } catch { setStatus("err"); }
+  };
+
+  if (status === "ok") return (
+    <div className="text-center py-12">
+      <div className="text-5xl mb-4">✅</div>
+      <div className="font-black text-xl mb-2 g-text">Сообщение отправлено!</div>
+      <p className="text-slate-400 text-sm">Отвечу в течение нескольких часов.</p>
+    </div>
+  );
+
+  return (
+    <form onSubmit={send} className="space-y-4 text-left">
+      {[
+        { key: "name",    label: "Имя",     type: "text",  placeholder: "Ваше имя" },
+        { key: "email",   label: "Email",   type: "email", placeholder: "your@email.com" },
+      ].map(({ key, label, type, placeholder }) => (
+        <div key={key}>
+          <label className="block text-xs text-slate-500 mb-1.5 font-medium">{label}</label>
+          <input
+            type={type} required placeholder={placeholder}
+            value={form[key as "name"|"email"]}
+            onChange={e => setForm(f => ({ ...f, [key]: e.target.value }))}
+            className="w-full px-4 py-3 rounded-xl text-sm text-white outline-none transition-all focus:border-purple-500/60"
+            style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+          />
+        </div>
+      ))}
+      <div>
+        <label className="block text-xs text-slate-500 mb-1.5 font-medium">Сообщение</label>
+        <textarea
+          required rows={4} placeholder="Расскажите о проекте..."
+          value={form.message}
+          onChange={e => setForm(f => ({ ...f, message: e.target.value }))}
+          className="w-full px-4 py-3 rounded-xl text-sm text-white outline-none transition-all focus:border-purple-500/60 resize-none"
+          style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
+        />
+      </div>
+      {status === "err" && <p className="text-red-400 text-xs">Ошибка. Попробуйте ещё раз.</p>}
+      <button type="submit" disabled={status === "sending"}
+        className="w-full py-4 rounded-2xl font-black text-white text-sm transition-all hover:scale-[1.02] disabled:opacity-60"
+        style={{ background: "linear-gradient(135deg,#a855f7,#06b6d4)", boxShadow: "0 0 30px rgba(168,85,247,0.3)" }}>
+        {status === "sending" ? "Отправляю..." : "Отправить сообщение →"}
+      </button>
+    </form>
+  );
+}
+
 /* ─── Magnetic button ───────────────────────────────────────── */
 function MagBtn({ href, children, style, className = "", target = "_self", rel = "" }: {
   href: string; children: React.ReactNode; style?: React.CSSProperties;
@@ -673,44 +736,54 @@ export default function Portfolio() {
 
       {/* ── CONTACT ── */}
       <section id="contact" className="relative z-10 py-28 px-6">
-        <div className="max-w-2xl mx-auto text-center">
+        <div className="max-w-5xl mx-auto">
           <Reveal>
             <p className="text-xs font-bold uppercase tracking-[4px] mb-4 g-text">— Контакт</p>
-            <h2 className="text-5xl md:text-6xl font-black mb-4">Есть проект?</h2>
+            <h2 className="text-4xl md:text-5xl font-black mb-4">Есть проект?</h2>
             <p className="text-slate-400 mb-14 text-lg">Напиши — отвечу в течение нескольких часов.</p>
           </Reveal>
-          <Reveal delay={0.1}>
-            <TiltCard className="p-2 mb-8 text-left">
-              {[
-                { icon: "📱", label: "Телефон",  val: "+373 69 721 294",    href: "tel:+37369721294" },
-                { icon: "✉️", label: "Email",    val: "grisha.009@mail.ru", href: "mailto:grisha.009@mail.ru" },
-                { icon: "✈️", label: "Telegram", val: "@targetboomerang",   href: "https://t.me/targetboomerang" },
-              ].map(item => (
-                <div key={item.label} className="flex items-center gap-4 px-6 py-5 rounded-2xl hover:bg-white/5 transition-colors">
-                  <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-xl shrink-0"
-                    style={{ background: "rgba(168,85,247,0.12)" }}>
-                    {item.icon}
+          <div className="grid md:grid-cols-2 gap-8 items-start">
+            {/* Left — contacts */}
+            <Reveal delay={0.05}>
+              <TiltCard className="p-2">
+                {[
+                  { icon: "📱", label: "Телефон",  val: "+373 69 721 294",    href: "tel:+37369721294" },
+                  { icon: "✉️", label: "Email",    val: "grisha.009@mail.ru", href: "mailto:grisha.009@mail.ru" },
+                  { icon: "✈️", label: "Telegram", val: "@targetboomerang",   href: "https://t.me/targetboomerang" },
+                ].map(item => (
+                  <div key={item.label} className="flex items-center gap-4 px-6 py-5 rounded-2xl hover:bg-white/5 transition-colors">
+                    <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-xl shrink-0"
+                      style={{ background: "rgba(168,85,247,0.12)" }}>
+                      {item.icon}
+                    </div>
+                    <div>
+                      <div className="text-xs text-slate-600 mb-0.5">{item.label}</div>
+                      <a href={item.href}
+                        target={item.href.startsWith("http") ? "_blank" : "_self"}
+                        rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                        className="font-semibold hover:text-white transition-colors" style={{ color: "#c084fc" }}>
+                        {item.val}
+                      </a>
+                    </div>
                   </div>
-                  <div>
-                    <div className="text-xs text-slate-600 mb-0.5">{item.label}</div>
-                    <a href={item.href}
-                      target={item.href.startsWith("http") ? "_blank" : "_self"}
-                      rel={item.href.startsWith("http") ? "noopener noreferrer" : undefined}
-                      className="font-semibold hover:text-white transition-colors" style={{ color: "#c084fc" }}>
-                      {item.val}
-                    </a>
-                  </div>
+                ))}
+                <div className="px-6 pb-5 pt-2">
+                  <MagBtn href="https://t.me/targetboomerang" target="_blank" rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 w-full py-4 rounded-2xl font-black text-white text-sm"
+                    style={{ background: "linear-gradient(135deg,#a855f7,#06b6d4)", boxShadow: "0 0 30px rgba(168,85,247,0.4)" }}>
+                    Написать в Telegram →
+                  </MagBtn>
                 </div>
-              ))}
-            </TiltCard>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <MagBtn href="https://t.me/targetboomerang" target="_blank" rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl font-black text-white text-base"
-              style={{ background: "linear-gradient(135deg,#a855f7,#06b6d4)", boxShadow: "0 0 60px rgba(168,85,247,0.5)" }}>
-              Написать в Telegram →
-            </MagBtn>
-          </Reveal>
+              </TiltCard>
+            </Reveal>
+            {/* Right — form */}
+            <Reveal delay={0.15}>
+              <TiltCard className="p-7">
+                <p className="font-black text-lg mb-5">Оставить заявку</p>
+                <ContactForm />
+              </TiltCard>
+            </Reveal>
+          </div>
         </div>
       </section>
 
