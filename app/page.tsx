@@ -228,15 +228,15 @@ export default function Portfolio() {
             <div className="float relative rounded-full overflow-hidden" style={{width:280,height:280,border:"4px solid rgba(7,7,15,0.9)"}}>
               <Image src="/photo.jpg" alt="Grigorii Slicov" fill className="object-cover object-top" priority/>
             </div>
-            {/* Floating badges */}
+            {/* Floating badges — hidden on mobile to prevent clipping */}
             {[
-              {l:"Next.js",  top:"8%",  left:"-10%",  d:"0s"},
-              {l:"Supabase", top:"80%", left:"-15%",  d:"0.7s"},
-              {l:"React",    top:"8%",  right:"-10%", d:"1.4s"},
-              {l:"Vercel",   top:"80%", right:"-15%", d:"2.1s"},
+              {l:"Next.js",  top:"8%",  left:"-12%",  d:"0s"},
+              {l:"Supabase", top:"80%", left:"-16%",  d:"0.7s"},
+              {l:"React",    top:"8%",  right:"-12%", d:"1.4s"},
+              {l:"Vercel",   top:"80%", right:"-16%", d:"2.1s"},
             ].map(({l,d,...pos})=>(
-              <div key={l} className="float absolute glass rounded-2xl px-4 py-2 text-xs font-bold text-slate-200"
-                style={{...pos as React.CSSProperties, animationDelay:d, border:"1px solid rgba(255,255,255,0.1)"}}>
+              <div key={l} className="float absolute glass rounded-2xl px-4 py-2 text-xs font-bold text-slate-200 hidden md:flex items-center"
+                style={{...pos as React.CSSProperties, animationDelay:d, border:"1px solid rgba(255,255,255,0.15)"}}>
                 {l}
               </div>
             ))}
@@ -287,12 +287,12 @@ export default function Portfolio() {
                   Я из Кишинёва. Изучаю веб-разработку самостоятельно и уже создал несколько коммерческих проектов — туристический сайт с базой данных и стартап-платформу для активностей в Молдове.
                 </p>
                 <div className="flex flex-wrap gap-3">
-                  <a href="https://wa.me/37369083514" target="_blank" rel="noopener noreferrer"
+                  <a href="tel:+37369721294"
                     className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white hover:scale-105 transition-transform"
                     style={{background:"#25d366"}}>
-                    WhatsApp
+                    +373 69 721 294
                   </a>
-                  <a href="https://t.me/slicovgrigorii" target="_blank" rel="noopener noreferrer"
+                  <a href="https://t.me/targetboomerang" target="_blank" rel="noopener noreferrer"
                     className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold text-white hover:scale-105 transition-transform"
                     style={{background:"#229ed9"}}>
                     Telegram
@@ -420,9 +420,9 @@ export default function Portfolio() {
           <Reveal delay={0.1}>
             <TiltCard className="p-2 mb-8 text-left">
               {[
-                {icon:"📱",label:"WhatsApp / Telegram",val:"+373 69 083 514",href:"https://wa.me/37369083514"},
-                {icon:"✉️",label:"Email",val:"leelisalee.13@gmail.com",href:"mailto:leelisalee.13@gmail.com"},
-                {icon:"📍",label:"Локация",val:"Молдова, Кишинёв",href:null},
+                {icon:"📱",label:"Телефон",val:"+373 69 721 294",href:"tel:+37369721294"},
+                {icon:"✉️",label:"Email",val:"grisha.009@mail.ru",href:"mailto:grisha.009@mail.ru"},
+                {icon:"✈️",label:"Telegram",val:"@targetboomerang",href:"https://t.me/targetboomerang"},
               ].map(item=>(
                 <div key={item.label} className="flex items-center gap-4 px-6 py-5 rounded-2xl hover:bg-white/5 transition-colors">
                   <div className="w-12 h-12 rounded-2xl flex items-center justify-center text-xl shrink-0"
@@ -440,10 +440,10 @@ export default function Portfolio() {
             </TiltCard>
           </Reveal>
           <Reveal delay={0.2}>
-            <a href="https://wa.me/37369083514" target="_blank" rel="noopener noreferrer"
+            <a href="https://t.me/targetboomerang" target="_blank" rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-10 py-5 rounded-2xl font-black text-white text-base transition-all duration-300 hover:scale-105"
               style={{background:"linear-gradient(135deg,#a855f7,#06b6d4)",boxShadow:"0 0 60px rgba(168,85,247,0.5)"}}>
-              Написать в WhatsApp →
+              Написать в Telegram →
             </a>
           </Reveal>
         </div>
