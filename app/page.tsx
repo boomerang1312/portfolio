@@ -281,7 +281,7 @@ function ContactForm() {
     <form onSubmit={send} className="space-y-4 text-left">
       {[
         { key: "name",    label: "Имя",     type: "text",  placeholder: "Ваше имя" },
-        { key: "email",   label: "Email",   type: "email", placeholder: "your@email.com" },
+        { key: "email",   label: "Телефон", type: "tel",   placeholder: "+373 69 000 000" },
       ].map(({ key, label, type, placeholder }) => (
         <div key={key}>
           <label className="block text-xs text-slate-500 mb-1.5 font-medium">{label}</label>

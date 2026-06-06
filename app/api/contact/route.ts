@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
   const chatId = process.env.TELEGRAM_CHAT_ID;
 
   if (token && chatId) {
-    const text = `📩 *Новая заявка с портфолио*\n\n👤 *Имя:* ${name}\n📧 *Email:* ${email}\n\n💬 *Сообщение:*\n${message}`;
+    const text = `📩 *Новая заявка с портфолио*\n\n👤 *Имя:* ${name}\n📱 *Телефон:* ${email}\n\n💬 *Сообщение:*\n${message}`;
     await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
