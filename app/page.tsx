@@ -238,63 +238,55 @@ function GlitchText({ text, className = "" }: { text: string; className?: string
   );
 }
 
-/* ─── Reviews 3D wheel ───────────────────────────────────────── */
-function ReviewsCarousel() {
-  const n = REVIEWS.length;
-  const radius = 340;
-
+/* ─── Reviews double marquee ─────────────────────────────────── */
+function ReviewCard({ r }: { r: typeof REVIEWS[0] }) {
   return (
-    <div className="relative" style={{ height: 340, overflow: "hidden" }}>
-      {/* edge fades */}
-      <div className="absolute inset-y-0 left-0 w-28 z-10 pointer-events-none"
+    <div style={{
+      flexShrink: 0, width: 310, margin: "0 10px",
+      background: "rgba(10,10,20,0.85)",
+      border: "1px solid rgba(168,85,247,0.18)",
+      borderRadius: 20, padding: "22px 24px",
+      backdropFilter: "blur(20px)",
+    }}>
+      <div style={{ color: "#f59e0b", fontSize: 14, marginBottom: 12, letterSpacing: 3 }}>
+        {"★".repeat(r.stars)}
+      </div>
+      <p style={{ color: "#94a3b8", fontSize: 13, lineHeight: 1.7, marginBottom: 18, fontStyle: "italic" }}>
+        "{r.text}"
+      </p>
+      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <div style={{
+          width: 34, height: 34, borderRadius: "50%",
+          background: "linear-gradient(135deg,#a855f7,#06b6d4)",
+          display: "flex", alignItems: "center", justifyContent: "center",
+          fontWeight: 900, color: "#fff", fontSize: 13, flexShrink: 0,
+        }}>{r.name.charAt(0)}</div>
+        <div>
+          <div style={{ fontWeight: 700, fontSize: 13, color: "#f1f5f9" }}>{r.name} <span>{r.country}</span></div>
+          <div style={{ fontSize: 11, color: "#475569", marginTop: 2 }}>{r.role}</div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function ReviewsCarousel() {
+  const row1 = [...REVIEWS, ...REVIEWS, ...REVIEWS];
+  const row2 = [...REVIEWS, ...REVIEWS, ...REVIEWS].reverse();
+  return (
+    <div className="relative overflow-hidden" style={{ marginLeft: "-24px", marginRight: "-24px" }}>
+      <div className="absolute inset-y-0 left-0 w-32 z-10 pointer-events-none"
         style={{ background: "linear-gradient(to right,#07070f,transparent)" }} />
-      <div className="absolute inset-y-0 right-0 w-28 z-10 pointer-events-none"
+      <div className="absolute inset-y-0 right-0 w-32 z-10 pointer-events-none"
         style={{ background: "linear-gradient(to left,#07070f,transparent)" }} />
 
-      {/* 3D stage */}
-      <div className="absolute inset-0" style={{ perspective: "900px" }}>
-        <div className="absolute" style={{ left: "50%", top: "50%", transform: "translate(-50%,-50%)" }}>
-          <div className="carousel-3d" style={{ transformStyle: "preserve-3d", position: "relative", width: 1, height: 1 }}>
-            {REVIEWS.map((r, i) => {
-              const angle = (i / n) * 360;
-              return (
-                <div key={i} style={{
-                  position: "absolute",
-                  transform: `rotateY(${angle}deg) translateZ(${radius}px)`,
-                }}>
-                  <div style={{ width: 300, transform: "translateX(-50%)" }}>
-                    <div style={{
-                      background: "rgba(10,10,20,0.88)",
-                      border: "1px solid rgba(168,85,247,0.22)",
-                      borderRadius: 20,
-                      padding: "22px 24px",
-                      backdropFilter: "blur(20px)",
-                    }}>
-                      <div style={{ color: "#f59e0b", fontSize: 15, marginBottom: 10, letterSpacing: 2 }}>
-                        {"★".repeat(r.stars)}
-                      </div>
-                      <p style={{ color: "#94a3b8", fontSize: 13, lineHeight: 1.65, marginBottom: 16, fontStyle: "italic" }}>
-                        "{r.text}"
-                      </p>
-                      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                        <div style={{
-                          width: 34, height: 34, borderRadius: "50%",
-                          background: "linear-gradient(135deg,#a855f7,#06b6d4)",
-                          display: "flex", alignItems: "center", justifyContent: "center",
-                          fontWeight: 900, color: "#fff", fontSize: 13, flexShrink: 0,
-                        }}>{r.name.charAt(0)}</div>
-                        <div>
-                          <div style={{ fontWeight: 700, fontSize: 13, color: "#f1f5f9" }}>{r.name} {r.country}</div>
-                          <div style={{ fontSize: 11, color: "#475569" }}>{r.role}</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+      {/* Row 1 — scrolls left */}
+      <div className="flex mb-4 reviews-row-l">
+        {row1.map((r, i) => <ReviewCard key={i} r={r} />)}
+      </div>
+      {/* Row 2 — scrolls right */}
+      <div className="flex reviews-row-r">
+        {row2.map((r, i) => <ReviewCard key={i} r={r} />)}
       </div>
     </div>
   );

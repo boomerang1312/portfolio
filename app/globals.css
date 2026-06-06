@@ -122,17 +122,18 @@ body {
 .glitch-1 { animation: glitch1 0.5s steps(1) forwards; }
 .glitch-2 { animation: glitch2 0.5s steps(1) forwards; }
 
-/* 3D Reviews wheel */
-@keyframes carousel-spin {
-  from { transform: rotateY(0deg); }
-  to   { transform: rotateY(-360deg); }
+/* Reviews double marquee */
+@keyframes reviews-l {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-33.333%); }
 }
-.carousel-3d {
-  animation: carousel-spin 16s linear infinite;
+@keyframes reviews-r {
+  from { transform: translateX(-33.333%); }
+  to   { transform: translateX(0); }
 }
-.carousel-3d:hover {
-  animation-play-state: paused;
-}
+.reviews-row-l { animation: reviews-l 30s linear infinite; width: max-content; }
+.reviews-row-r { animation: reviews-r 30s linear infinite; width: max-content; }
+.reviews-row-l:hover, .reviews-row-r:hover { animation-play-state: paused; }
 
 /* Custom cursor — hide default on mouse devices */
 @media (pointer: fine) {
