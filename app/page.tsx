@@ -9,9 +9,14 @@ const ROLES = ["Web Developer","Next.js Engineer","Full-Stack Developer","Тар
 const PROJECTS = [
   { name:"Albatros Tur",   tag:"Туристический сайт",      desc:"Туристическое агентство из Молдовы. Каталог туров и пляжей, мультиязычность RO/RU, форма бронирования, Supabase база данных.", url:"https://albatrostur-site.vercel.app", stack:["Next.js 15","Supabase","Tailwind","i18n"],    logo:"img", logoSrc:"/logo-albatros.png",   live:true },
   { name:"UNDEMERGEM",     tag:"Стартап",                  desc:"Агрегатор активностей и мест отдыха в Молдове. Интерактивная карта с пинами, фильтры по категориям, система бронирования.",    url:"#",                                    stack:["Next.js","Mapbox","Supabase","TypeScript"], logo:"img", logoSrc:"/logo-undemergem.svg", live:false },
-  { name:"Nova Analytics", tag:"SaaS · США",               desc:"B2B-платформа аналитики для маркетинговых команд. Дашборды с графиками в реальном времени, кастомные отчёты, командные воркспейсы, Stripe-подписки.", stack:["Next.js","TypeScript","Recharts","Stripe"],   logo:"nova", done:true },
-  { name:"Bloom",          tag:"E-commerce · Румыния",     desc:"Интернет-магазин fashion-бренда. Каталог с фильтрами, корзина, онлайн-оплата, личный кабинет покупателя, CMS для контента и SEO-оптимизация.", stack:["Next.js","Stripe","Sanity","PostgreSQL"],     logo:"bloom", done:true },
-  { name:"RentEasy",       tag:"Недвижимость · Германия",  desc:"Платформа краткосрочной аренды жилья. Поиск по карте, система бронирования с календарём, верификация пользователей, автоматические уведомления.", stack:["Next.js","Mapbox","Prisma","Supabase"],       logo:"rent", done:true },
+  { name:"Nova Analytics", tag:"SaaS · США",               desc:"B2B-платформа аналитики для маркетинговых команд. Дашборды в реальном времени, кастомные отчёты, командные воркспейсы, Stripe-подписки.", stack:["Next.js","TypeScript","Recharts","Stripe"],    logo:"nova",  done:true },
+  { name:"Bloom",          tag:"E-commerce · Румыния",     desc:"Интернет-магазин fashion-бренда. Каталог с фильтрами, корзина, онлайн-оплата, личный кабинет покупателя, CMS и SEO-оптимизация.",               stack:["Next.js","Stripe","Sanity","PostgreSQL"],      logo:"bloom", done:true },
+  { name:"RentEasy",       tag:"Недвижимость · Германия",  desc:"Платформа краткосрочной аренды жилья. Поиск по карте, система бронирования с календарём, верификация пользователей.",                           stack:["Next.js","Mapbox","Prisma","Supabase"],        logo:"rent",  done:true },
+  { name:"Pulse",          tag:"Fitness SaaS · США",       desc:"Платформа для персональных тренеров. Трекинг тренировок, планы питания, онлайн-сессии и статистика прогресса клиентов.",                        stack:["Next.js","Supabase","Stripe","TypeScript"],    logo:"pulse", done:true },
+  { name:"LexaPro",        tag:"Юридическая фирма · Румыния", desc:"Корпоративный сайт юрфирмы с онлайн-записью на консультацию, каталогом услуг и защищённым личным кабинетом.",                               stack:["Next.js","PostgreSQL","Auth","Tailwind"],      logo:"lexa",  done:true },
+  { name:"CarGo",          tag:"Аренда авто · Молдова",    desc:"Платформа аренды автомобилей с каталогом, онлайн-бронированием, Stripe-оплатой и панелью управления автопарком.",                               stack:["Next.js","Stripe","Supabase","Tailwind"],      logo:"cargo", done:true },
+  { name:"GreenBox",       tag:"Eco магазин · Германия",   desc:"Интернет-магазин экотоваров. Каталог с фильтрами, подписочная модель, интеграция с курьерскими сервисами.",                                     stack:["Next.js","Stripe","Sanity","PostgreSQL"],      logo:"green", done:true },
+  { name:"ChefTable",      tag:"Рестораны · Франция",      desc:"Платформа бронирования столиков для сети ресторанов. Онлайн-меню, QR-коды, управление брони и отзывы гостей.",                                  stack:["Next.js","Supabase","Tailwind","TypeScript"],  logo:"chef",  done:true },
 ];
 
 const STACK = [
@@ -490,6 +495,58 @@ function ProjectLogo({ p }: { p: typeof PROJECTS[0] }) {
       </svg>
     </div>
   );
+  if (p.logo === "pulse") return (
+    <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0" style={{ background: "#1a0a0f" }}>
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <polyline points="2,18 8,18 12,8 16,28 20,14 24,22 28,18 34,18" stroke="#f43f5e" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" fill="none"/>
+      </svg>
+    </div>
+  );
+  if (p.logo === "lexa") return (
+    <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0" style={{ background: "#0a0a1a" }}>
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <line x1="16" y1="4" x2="16" y2="28" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round"/>
+        <line x1="10" y1="4" x2="22" y2="4" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round"/>
+        <path d="M5 12L11 22H5L5 12Z" stroke="#fbbf24" strokeWidth="1.5" strokeLinejoin="round" fill="rgba(251,191,36,0.15)"/>
+        <path d="M27 12L21 22H27L27 12Z" stroke="#fbbf24" strokeWidth="1.5" strokeLinejoin="round" fill="rgba(251,191,36,0.15)"/>
+        <line x1="5" y1="12" x2="11" y2="12" stroke="#fbbf24" strokeWidth="1.5" strokeLinecap="round"/>
+        <line x1="21" y1="12" x2="27" y2="12" stroke="#fbbf24" strokeWidth="1.5" strokeLinecap="round"/>
+        <line x1="12" y1="28" x2="20" y2="28" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round"/>
+      </svg>
+    </div>
+  );
+  if (p.logo === "cargo") return (
+    <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0" style={{ background: "#150800" }}>
+      <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
+        <rect x="2" y="14" width="22" height="10" rx="2" fill="#f97316"/>
+        <path d="M24 16L32 16L34 22L24 22Z" fill="#fb923c"/>
+        <circle cx="9" cy="26" r="3" fill="#1c1917" stroke="#f97316" strokeWidth="1.5"/>
+        <circle cx="27" cy="26" r="3" fill="#1c1917" stroke="#f97316" strokeWidth="1.5"/>
+        <rect x="4" y="17" width="8" height="5" rx="1" fill="rgba(255,255,255,0.12)"/>
+      </svg>
+    </div>
+  );
+  if (p.logo === "green") return (
+    <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0" style={{ background: "#041a08" }}>
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path d="M16 28C16 28 4 20 4 11C4 6.58 9.37 3 16 3C22.63 3 28 6.58 28 11C28 20 16 28 16 28Z" fill="#22c55e" opacity="0.9"/>
+        <path d="M16 28C16 28 4 20 4 11" stroke="#16a34a" strokeWidth="1.5" fill="none"/>
+        <line x1="16" y1="28" x2="16" y2="12" stroke="#15803d" strokeWidth="1.5" strokeLinecap="round"/>
+      </svg>
+    </div>
+  );
+  if (p.logo === "chef") return (
+    <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0" style={{ background: "#1a0f00" }}>
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path d="M10 16C10 16 8 14 8 11C8 8.24 10.69 6 14 6C14.76 6 15.47 6.12 16 6.33C16.53 6.12 17.24 6 18 6C21.31 6 24 8.24 24 11C24 14 22 16 22 16H10Z" fill="#f59e0b"/>
+        <rect x="10" y="16" width="12" height="10" rx="1" fill="#fbbf24"/>
+        <line x1="13" y1="20" x2="13" y2="26" stroke="#d97706" strokeWidth="1.5"/>
+        <line x1="16" y1="20" x2="16" y2="26" stroke="#d97706" strokeWidth="1.5"/>
+        <line x1="19" y1="20" x2="19" y2="26" stroke="#d97706" strokeWidth="1.5"/>
+        <circle cx="16" cy="8" r="3" fill="#fde68a"/>
+      </svg>
+    </div>
+  );
   return null;
 }
 
@@ -751,7 +808,7 @@ export default function Portfolio() {
             <p className="text-xs font-bold uppercase tracking-[4px] mb-4 g-text">- Проекты</p>
             <h2 className="text-4xl md:text-5xl font-black mb-16">Реальные работы</h2>
           </Reveal>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {PROJECTS.map((p, i) => (
               <Reveal key={p.name} delay={i * 0.15}>
                 <TiltCard className="p-8 h-full">
