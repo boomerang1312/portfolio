@@ -436,16 +436,16 @@ export default function Portfolio() {
           </Reveal>
 
           {/* Stats */}
-          <div className="grid grid-cols-3 gap-4 mb-12">
+          <div className="grid grid-cols-3 gap-3 md:gap-4 mb-12">
             {[
               { num: 5,  suffix: "+", label: "Лет опыта" },
               { num: 10, suffix: "+", label: "Проектов" },
               { num: 8,  suffix: "+", label: "Технологий" },
             ].map(({ num, suffix, label }, i) => (
               <Reveal key={label} delay={i * 0.1}>
-                <div className="text-center glass rounded-2xl p-5 border border-white/10">
-                  <div className="text-3xl md:text-4xl font-black g-text"><CountUp target={num} suffix={suffix} /></div>
-                  <div className="text-slate-500 text-xs mt-1">{label}</div>
+                <div className="text-center glass rounded-2xl p-3 md:p-5 border border-white/10">
+                  <div className="text-2xl md:text-4xl font-black g-text leading-none"><CountUp target={num} suffix={suffix} /></div>
+                  <div className="text-slate-500 text-[10px] md:text-xs mt-1.5 leading-tight">{label}</div>
                 </div>
               </Reveal>
             ))}
