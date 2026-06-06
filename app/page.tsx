@@ -24,9 +24,9 @@ const STACK = [
 ];
 
 const PRICES = [
-  { name:"Лендинг",    price:"250–500 €",  desc:"Один экран или несколько блоков — визитка, промо, презентация услуг",   items:["Мобильная версия","Форма заявки","Быстрая загрузка","Размещение в интернете"],  c:"#a855f7" },
+  { name:"Лендинг",    price:"250–500 €",  desc:"Один экран или несколько блоков - визитка, промо, презентация услуг",   items:["Мобильная версия","Форма заявки","Быстрая загрузка","Размещение в интернете"],  c:"#a855f7" },
   { name:"Сайт",       price:"600–1200 €", desc:"Несколько страниц, своя база данных, всё что нужно реальному бизнесу",  items:["До 6 страниц","База данных","Поддержка 2 языков","Домен + хостинг"],             c:"#06b6d4", hot:true },
-  { name:"Платформа",  price:"от 2000 €",  desc:"Кабинеты, роли, платежи — когда нужно что-то серьёзное",               items:["Личные кабинеты","Приём оплат","Интеграции с сервисами","Месяц поддержки"],      c:"#f43f5e" },
+  { name:"Платформа",  price:"от 2000 €",  desc:"Кабинеты, роли, платежи - когда нужно что-то серьёзное",               items:["Личные кабинеты","Приём оплат","Интеграции с сервисами","Месяц поддержки"],      c:"#f43f5e" },
 ];
 
 /* ─── Particle intro ────────────────────────────────────────── */
@@ -513,7 +513,7 @@ export default function Portfolio() {
 
             <p className="text-slate-500 text-base leading-relaxed mb-10 max-w-md">
               Делаю сайты и веб-приложения уже 5 лет.<br />
-              Параллельно занимаюсь таргетом — FB, IG, TikTok.
+              Параллельно занимаюсь таргетом - FB, IG, TikTok.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -529,7 +529,7 @@ export default function Portfolio() {
             </div>
           </div>
 
-          {/* Right — Photo */}
+          {/* Right - Photo */}
           <div className="flex justify-center items-center relative">
             <div className="ring-spin absolute rounded-full" style={{
               width: 300, height: 300,
@@ -565,7 +565,7 @@ export default function Portfolio() {
       <section id="about" className="relative z-10 py-28 px-6">
         <div className="max-w-5xl mx-auto">
           <Reveal>
-            <p className="text-xs font-bold uppercase tracking-[4px] mb-4 g-text">— О себе</p>
+            <p className="text-xs font-bold uppercase tracking-[4px] mb-4 g-text">- О себе</p>
             <h2 className="text-4xl md:text-5xl font-black mb-12">
               Коротко о себе
             </h2>
@@ -592,7 +592,7 @@ export default function Portfolio() {
               { num: "01", title: "Веб-разработка",  desc: "5 лет на Next.js, React, Supabase. Делал сайты для бизнеса из Молдовы, Румынии и Германии." },
               { num: "02", title: "Таргет",           desc: "3 года настраиваю рекламу в Facebook, Instagram и TikTok. Работал с разными нишами." },
               { num: "03", title: "Скорость",         desc: "Сдаю проекты в срок. Обычно от 1 до 4 недель в зависимости от объёма." },
-              { num: "04", title: "Связка сайт+трафик", desc: "Могу и разработать, и сразу настроить рекламу — не нужно искать двух разных людей." },
+              { num: "04", title: "Связка сайт+трафик", desc: "Могу и разработать, и сразу настроить рекламу - не нужно искать двух разных людей." },
             ].map((c, i) => (
               <Reveal key={c.num} delay={i * 0.12}>
                 <TiltCard className="p-7 h-full">
@@ -611,7 +611,7 @@ export default function Portfolio() {
               </div>
               <div>
                 <p className="text-slate-300 leading-relaxed mb-4">
-                  Мне 23 года, живу в Кишинёве. Начал с простых лендингов, сейчас делаю полноценные платформы с базами данных и авторизацией. Параллельно веду рекламу для клиентов — в основном FB и Instagram. Работаю сам, без команды — поэтому всегда на прямой связи.
+                  Мне 23 года, живу в Кишинёве. Начал с простых лендингов, сейчас делаю полноценные платформы с базами данных и авторизацией. Параллельно веду рекламу для клиентов - в основном FB и Instagram. Работаю сам, без команды - поэтому всегда на прямой связи.
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <MagBtn href="tel:+37369721294"
@@ -635,7 +635,7 @@ export default function Portfolio() {
       <section id="projects" className="relative z-10 py-28 px-6">
         <div className="max-w-5xl mx-auto">
           <Reveal>
-            <p className="text-xs font-bold uppercase tracking-[4px] mb-4 g-text">— Проекты</p>
+            <p className="text-xs font-bold uppercase tracking-[4px] mb-4 g-text">- Проекты</p>
             <h2 className="text-4xl md:text-5xl font-black mb-16">Реальные работы</h2>
           </Reveal>
           <div className="grid md:grid-cols-2 gap-8">
@@ -680,11 +680,11 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ── STACK — infinite marquee ── */}
+      {/* ── STACK - infinite marquee ── */}
       <section id="stack" className="relative z-10 py-28 px-6">
         <div className="max-w-5xl mx-auto">
           <Reveal>
-            <p className="text-xs font-bold uppercase tracking-[4px] mb-4 g-text">— Технологии</p>
+            <p className="text-xs font-bold uppercase tracking-[4px] mb-4 g-text">- Технологии</p>
             <h2 className="text-4xl md:text-5xl font-black mb-16">Мой стек</h2>
           </Reveal>
           <Marquee />
@@ -695,9 +695,9 @@ export default function Portfolio() {
       <section id="prices" className="relative z-10 py-28 px-6">
         <div className="max-w-5xl mx-auto">
           <Reveal>
-            <p className="text-xs font-bold uppercase tracking-[4px] mb-4 g-text">— Цены</p>
+            <p className="text-xs font-bold uppercase tracking-[4px] mb-4 g-text">- Цены</p>
             <h2 className="text-4xl md:text-5xl font-black mb-3">Стоимость</h2>
-            <p className="text-slate-500 mb-16">Это ориентир — по факту всё обсуждаем, исходя из задачи</p>
+            <p className="text-slate-500 mb-16">Это ориентир - по факту всё обсуждаем, исходя из задачи</p>
           </Reveal>
           <div className="grid md:grid-cols-3 gap-6">
             {PRICES.map(({ name, price, desc, items, c, hot }, i) => (
@@ -736,12 +736,12 @@ export default function Portfolio() {
       <section id="contact" className="relative z-10 py-28 px-6">
         <div className="max-w-5xl mx-auto">
           <Reveal>
-            <p className="text-xs font-bold uppercase tracking-[4px] mb-4 g-text">— Контакт</p>
+            <p className="text-xs font-bold uppercase tracking-[4px] mb-4 g-text">- Контакт</p>
             <h2 className="text-4xl md:text-5xl font-black mb-4">Напиши мне</h2>
-            <p className="text-slate-400 mb-14 text-lg">Расскажи что нужно — отвечу быстро, без воды.</p>
+            <p className="text-slate-400 mb-14 text-lg">Расскажи что нужно - отвечу быстро, без воды.</p>
           </Reveal>
           <div className="grid md:grid-cols-2 gap-8 items-start">
-            {/* Left — contacts */}
+            {/* Left - contacts */}
             <Reveal delay={0.05}>
               <TiltCard className="p-2">
                 {[
@@ -774,7 +774,7 @@ export default function Portfolio() {
                 </div>
               </TiltCard>
             </Reveal>
-            {/* Right — form */}
+            {/* Right - form */}
             <Reveal delay={0.15}>
               <TiltCard className="p-7">
                 <p className="font-black text-lg mb-5">Оставить заявку</p>
