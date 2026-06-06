@@ -7,11 +7,11 @@ const NAV = [["О себе","about"],["Проекты","projects"],["Стек","
 const ROLES = ["Web Developer","Next.js Engineer","Full-Stack Developer","Таргетолог · 3 года"];
 
 const PROJECTS = [
-  { name:"Albatros Tur",   tag:"Туристический сайт",  desc:"Туристическое агентство из Молдовы. Каталог туров и пляжей, мультиязычность RO/RU, форма бронирования, Supabase база данных.", url:"https://albatrostur-site.vercel.app", stack:["Next.js 15","Supabase","Tailwind","i18n"],    emoji:"✈️", live:true },
-  { name:"UNDEMERGEM",     tag:"Стартап",              desc:"Агрегатор активностей и мест отдыха в Молдове. Интерактивная карта с пинами, фильтры по категориям, система бронирования.",    url:"#",                                    stack:["Next.js","Mapbox","Supabase","TypeScript"], emoji:"🗺️", live:false },
-  { name:"Nova Analytics", tag:"SaaS · США",           desc:"B2B-платформа аналитики для маркетинговых команд. Дашборды с графиками в реальном времени, кастомные отчёты, командные воркспейсы, Stripe-подписки.", stack:["Next.js","TypeScript","Recharts","Stripe"],   emoji:"📊", done:true },
-  { name:"Bloom",          tag:"E-commerce · Румыния", desc:"Интернет-магазин fashion-бренда. Каталог с фильтрами, корзина, онлайн-оплата, личный кабинет покупателя, CMS для контента и SEO-оптимизация.", stack:["Next.js","Stripe","Sanity","PostgreSQL"],     emoji:"🌸", done:true },
-  { name:"RentEasy",       tag:"Недвижимость · Германия", desc:"Платформа краткосрочной аренды жилья. Поиск по карте, система бронирования с календарём, верификация пользователей, автоматические уведомления.", stack:["Next.js","Mapbox","Prisma","Supabase"],       emoji:"🏡", done:true },
+  { name:"Albatros Tur",   tag:"Туристический сайт",      desc:"Туристическое агентство из Молдовы. Каталог туров и пляжей, мультиязычность RO/RU, форма бронирования, Supabase база данных.", url:"https://albatrostur-site.vercel.app", stack:["Next.js 15","Supabase","Tailwind","i18n"],    logo:"img", logoSrc:"/logo-albatros.png",   live:true },
+  { name:"UNDEMERGEM",     tag:"Стартап",                  desc:"Агрегатор активностей и мест отдыха в Молдове. Интерактивная карта с пинами, фильтры по категориям, система бронирования.",    url:"#",                                    stack:["Next.js","Mapbox","Supabase","TypeScript"], logo:"img", logoSrc:"/logo-undemergem.svg", live:false },
+  { name:"Nova Analytics", tag:"SaaS · США",               desc:"B2B-платформа аналитики для маркетинговых команд. Дашборды с графиками в реальном времени, кастомные отчёты, командные воркспейсы, Stripe-подписки.", stack:["Next.js","TypeScript","Recharts","Stripe"],   logo:"nova", done:true },
+  { name:"Bloom",          tag:"E-commerce · Румыния",     desc:"Интернет-магазин fashion-бренда. Каталог с фильтрами, корзина, онлайн-оплата, личный кабинет покупателя, CMS для контента и SEO-оптимизация.", stack:["Next.js","Stripe","Sanity","PostgreSQL"],     logo:"bloom", done:true },
+  { name:"RentEasy",       tag:"Недвижимость · Германия",  desc:"Платформа краткосрочной аренды жилья. Поиск по карте, система бронирования с календарём, верификация пользователей, автоматические уведомления.", stack:["Next.js","Mapbox","Prisma","Supabase"],       logo:"rent", done:true },
 ];
 
 const STACK = [
@@ -455,6 +455,44 @@ function TiltCard({ children, className = "", style = {} }: { children: React.Re
   );
 }
 
+/* ─── Project logo ──────────────────────────────────────────── */
+function ProjectLogo({ p }: { p: typeof PROJECTS[0] }) {
+  if (p.logo === "img") return (
+    <div className="w-14 h-14 rounded-2xl overflow-hidden flex items-center justify-center shrink-0"
+      style={{ background: "rgba(255,255,255,0.05)" }}>
+      <Image src={p.logoSrc!} alt={p.name} width={52} height={52} className="object-contain w-12 h-12" />
+    </div>
+  );
+  if (p.logo === "nova") return (
+    <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0" style={{ background: "#1e1b4b" }}>
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <rect x="2"  y="18" width="6" height="12" rx="2" fill="#6366f1"/>
+        <rect x="13" y="11" width="6" height="19" rx="2" fill="#818cf8"/>
+        <rect x="24" y="4"  width="6" height="26" rx="2" fill="#a5b4fc"/>
+      </svg>
+    </div>
+  );
+  if (p.logo === "bloom") return (
+    <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0" style={{ background: "#1a0010" }}>
+      <svg width="34" height="34" viewBox="0 0 34 34" fill="none">
+        <circle cx="17" cy="17" r="4" fill="#fda4af"/>
+        <ellipse cx="17" cy="7"  rx="3.5" ry="5.5" fill="#f472b6"/>
+        <ellipse cx="17" cy="27" rx="3.5" ry="5.5" fill="#f472b6"/>
+        <ellipse cx="7"  cy="17" rx="5.5" ry="3.5" fill="#ec4899"/>
+        <ellipse cx="27" cy="17" rx="5.5" ry="3.5" fill="#ec4899"/>
+      </svg>
+    </div>
+  );
+  if (p.logo === "rent") return (
+    <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0" style={{ background: "#001a1a" }}>
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+        <path d="M16 3L29 13.5V29H21V20H11V29H3V13.5L16 3Z" fill="#06b6d4"/>
+      </svg>
+    </div>
+  );
+  return null;
+}
+
 /* ─── Scroll reveal ─────────────────────────────────────────── */
 function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -718,7 +756,7 @@ export default function Portfolio() {
               <Reveal key={p.name} delay={i * 0.15}>
                 <TiltCard className="p-8 h-full">
                   <div className="flex items-start justify-between mb-6">
-                    <div className="text-5xl">{p.emoji}</div>
+                    <ProjectLogo p={p} />
                     {p.live ? (
                       <a href={p.url} target="_blank" rel="noopener noreferrer"
                         className="flex items-center gap-1.5 text-xs font-bold px-3 py-1.5 rounded-full"
