@@ -45,16 +45,28 @@ function useTypewriter(texts: string[]) {
 /* ─── 3D Tilt card ──────────────────────────────────────────── */
 function TiltCard({ children, className="", style={} }: { children:React.ReactNode; className?:string; style?:React.CSSProperties }) {
   const ref  = useRef<HTMLDivElement>(null);
+  const [glow, setGlow] = useState({x:50,y:50,on:false});
   const move = useCallback((e:React.MouseEvent) => {
     const el = ref.current; if(!el) return;
     const r  = el.getBoundingClientRect();
     const x  = (e.clientX - r.left) / r.width  - 0.5;
     const y  = (e.clientY - r.top)  / r.height - 0.5;
     el.style.transform = `perspective(800px) rotateY(${x*18}deg) rotateX(${-y*18}deg) scale3d(1.03,1.03,1.03)`;
+    setGlow({x:(e.clientX-r.left)/r.width*100, y:(e.clientY-r.top)/r.height*100, on:true});
   },[]);
-  const leave = useCallback(()=>{ if(ref.current) ref.current.style.transform="perspective(800px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)"; },[]);
+  const leave = useCallback(()=>{
+    if(ref.current) ref.current.style.transform="perspective(800px) rotateY(0deg) rotateX(0deg) scale3d(1,1,1)";
+    setGlow(g=>({...g,on:false}));
+  },[]);
   return (
-    <div ref={ref} onMouseMove={move} onMouseLeave={leave} className={`rainbow-border glass rounded-3xl transition-transform duration-200 ${className}`} style={{...style,transformStyle:"preserve-3d"}}>
+    <div ref={ref} onMouseMove={move} onMouseLeave={leave}
+      className={`rounded-3xl transition-transform duration-200 relative overflow-hidden ${className}`}
+      style={{...style, transformStyle:"preserve-3d", background:"rgba(10,10,20,0.85)", backdropFilter:"blur(20px)",
+        border:"1px solid rgba(168,85,247,0.2)"}}>
+      <div className="absolute inset-0 pointer-events-none transition-opacity duration-300" style={{
+        opacity: glow.on ? 1 : 0,
+        background:`radial-gradient(circle at ${glow.x}% ${glow.y}%, rgba(168,85,247,0.15) 0%, transparent 60%)`,
+      }}/>
       {children}
     </div>
   );
