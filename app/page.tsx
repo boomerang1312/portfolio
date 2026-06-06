@@ -4,7 +4,7 @@ import Image from "next/image";
 
 /* ─── Data ─────────────────────────────────────────────────── */
 const NAV = [["О себе","about"],["Проекты","projects"],["Стек","stack"],["Цены","prices"],["Контакт","contact"]];
-const ROLES = ["Web Developer","Next.js Engineer","Full-Stack Builder","UI/UX Enthusiast"];
+const ROLES = ["Web Developer","Next.js Engineer","Full-Stack Developer","5 лет опыта"];
 
 const PROJECTS = [
   { name:"Albatros Tur", tag:"Коммерческий сайт", desc:"Туристическое агентство из Молдовы. Каталог туров и пляжей, мультиязычность RO/RU, форма бронирования, Supabase база данных.", url:"https://albatrostur-site.vercel.app", stack:["Next.js 15","Supabase","Tailwind","i18n"], emoji:"✈️", live:true },
@@ -128,7 +128,7 @@ function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
 /* ─── Glitch text ───────────────────────────────────────────── */
 function GlitchText({ text, className = "" }: { text: string; className?: string }) {
   const [active, setActive] = useState(false);
-  const timer = useRef<ReturnType<typeof setTimeout>>();
+  const timer = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
   const start = () => {
     setActive(true);
     clearTimeout(timer.current);
