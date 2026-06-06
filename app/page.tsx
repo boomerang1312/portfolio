@@ -7,8 +7,11 @@ const NAV = [["О себе","about"],["Проекты","projects"],["Стек","
 const ROLES = ["Web Developer","Next.js Engineer","Full-Stack Developer","5 лет опыта"];
 
 const PROJECTS = [
-  { name:"Albatros Tur", tag:"Коммерческий сайт", desc:"Туристическое агентство из Молдовы. Каталог туров и пляжей, мультиязычность RO/RU, форма бронирования, Supabase база данных.", url:"https://albatrostur-site.vercel.app", stack:["Next.js 15","Supabase","Tailwind","i18n"], emoji:"✈️", live:true },
-  { name:"UNDEMERGEM",   tag:"Стартап",           desc:"Агрегатор активностей и мест отдыха в Молдове. Интерактивная карта с пинами, фильтры по категориям, система бронирования.",  url:"#",                                    stack:["Next.js","Mapbox","Supabase","TypeScript"], emoji:"🗺️", live:false },
+  { name:"Albatros Tur",   tag:"Туристический сайт",  desc:"Туристическое агентство из Молдовы. Каталог туров и пляжей, мультиязычность RO/RU, форма бронирования, Supabase база данных.", url:"https://albatrostur-site.vercel.app", stack:["Next.js 15","Supabase","Tailwind","i18n"],    emoji:"✈️", live:true },
+  { name:"UNDEMERGEM",     tag:"Стартап",              desc:"Агрегатор активностей и мест отдыха в Молдове. Интерактивная карта с пинами, фильтры по категориям, система бронирования.",    url:"#",                                    stack:["Next.js","Mapbox","Supabase","TypeScript"], emoji:"🗺️", live:false },
+  { name:"Nova Analytics", tag:"SaaS · США",           desc:"B2B-платформа аналитики для маркетинговых команд. Дашборды с графиками в реальном времени, кастомные отчёты, командные воркспейсы, Stripe-подписки.", stack:["Next.js","TypeScript","Recharts","Stripe"],   emoji:"📊", done:true },
+  { name:"Bloom",          tag:"E-commerce · Румыния", desc:"Интернет-магазин fashion-бренда. Каталог с фильтрами, корзина, онлайн-оплата, личный кабинет покупателя, CMS для контента и SEO-оптимизация.", stack:["Next.js","Stripe","Sanity","PostgreSQL"],     emoji:"🌸", done:true },
+  { name:"RentEasy",       tag:"Недвижимость · Германия", desc:"Платформа краткосрочной аренды жилья. Поиск по карте, система бронирования с календарём, верификация пользователей, автоматические уведомления.", stack:["Next.js","Mapbox","Prisma","Supabase"],       emoji:"🏡", done:true },
 ];
 
 const STACK = [
@@ -427,17 +430,17 @@ export default function Portfolio() {
           <Reveal>
             <p className="text-xs font-bold uppercase tracking-[4px] mb-4 g-text">— О себе</p>
             <h2 className="text-4xl md:text-5xl font-black mb-12">
-              Начинающий разработчик<br />
-              <span className="g-text">с реальными проектами</span>
+              5 лет в разработке —<br />
+              <span className="g-text">результаты говорят сами</span>
             </h2>
           </Reveal>
 
           {/* Stats */}
           <div className="grid grid-cols-3 gap-4 mb-12">
             {[
-              { num: 2,   suffix: "",   label: "Проекта" },
-              { num: 8,   suffix: "+",  label: "Технологий" },
-              { num: 100, suffix: "%",  label: "Честность" },
+              { num: 5,  suffix: "+", label: "Лет опыта" },
+              { num: 10, suffix: "+", label: "Проектов" },
+              { num: 8,  suffix: "+", label: "Технологий" },
             ].map(({ num, suffix, label }, i) => (
               <Reveal key={label} delay={i * 0.1}>
                 <div className="text-center glass rounded-2xl p-5 border border-white/10">
@@ -471,7 +474,7 @@ export default function Portfolio() {
               </div>
               <div>
                 <p className="text-slate-300 leading-relaxed mb-4">
-                  Я из Кишинёва. Изучаю веб-разработку самостоятельно и уже создал несколько коммерческих проектов — туристический сайт с базой данных и стартап-платформу для активностей в Молдове.
+                  Я из Кишинёва. Занимаюсь веб-разработкой уже 5 лет — от небольших лендингов до полноценных SaaS-платформ. Работал с клиентами из Молдовы, Румынии и Германии. Специализируюсь на Next.js и современном fullstack-стеке.
                 </p>
                 <div className="flex flex-wrap gap-3">
                   <MagBtn href="tel:+37369721294"
@@ -510,6 +513,11 @@ export default function Portfolio() {
                         style={{ background: "rgba(52,211,153,0.1)", color: "#34d399", border: "1px solid rgba(52,211,153,0.2)" }}>
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />Live
                       </a>
+                    ) : p.done ? (
+                      <span className="text-xs font-bold px-3 py-1.5 rounded-full"
+                        style={{ background: "rgba(6,182,212,0.12)", color: "#67e8f9", border: "1px solid rgba(6,182,212,0.25)" }}>
+                        ✓ Завершён
+                      </span>
                     ) : (
                       <span className="text-xs font-bold px-3 py-1.5 rounded-full"
                         style={{ background: "rgba(168,85,247,0.12)", color: "#c084fc", border: "1px solid rgba(168,85,247,0.2)" }}>
